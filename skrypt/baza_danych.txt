@@ -1,0 +1,135 @@
+CREATE USER [zesp] FOR LOGIN [zesp] WITH DEFAULT_SCHEMA=[dbo]
+GO
+ALTER ROLE [db_owner] ADD MEMBER [zesp]
+GO
+ALTER ROLE [db_securityadmin] ADD MEMBER [zesp]
+GO
+/****** Object:  Table [dbo].[Grafik]    Script Date: 2016-01-13 17:15:30 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Grafik](
+	[IdGrafik] [int] IDENTITY(1,1) NOT NULL,
+	[IdPokoju] [int] NOT NULL,
+	[DataOd] [date] NOT NULL,
+	[DataDo] [date] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[IdGrafik] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Hotel]    Script Date: 2016-01-13 17:15:30 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Hotel](
+	[IdHotelu] [int] IDENTITY(1,1) NOT NULL,
+	[Nazwa] [nvarchar](40) NOT NULL,
+	[Adres] [text] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[IdHotelu] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Klient]    Script Date: 2016-01-13 17:15:30 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Klient](
+	[IdKlienta] [int] IDENTITY(1,1) NOT NULL,
+	[Imie] [nvarchar](20) NOT NULL,
+	[Nazwisko] [nvarchar](20) NOT NULL,
+	[NrTelefonu] [text] NOT NULL,
+	[Email] [text] NULL,
+	[Miejscowosc] [nvarchar](40) NOT NULL,
+	[Ulica] [nvarchar](60) NOT NULL,
+	[NrMieszkania] [int] NOT NULL,
+	[KodPocztowy] [text] NOT NULL,
+	[Kraj] [text] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[IdKlienta] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Pokoj]    Script Date: 2016-01-13 17:15:30 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Pokoj](
+	[IdPokoju] [int] IDENTITY(1,1) NOT NULL,
+	[NrPokoju] [int] NOT NULL,
+	[IdHotelu] [int] NOT NULL,
+	[IloscLozek] [int] NOT NULL,
+	[PokojStandard] [int] NOT NULL,
+	[Cena] [float] NULL,
+	[PokojStatus] [int] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[IdPokoju] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Rezerwacja]    Script Date: 2016-01-13 17:15:30 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Rezerwacja](
+	[IdRezerwacji] [int] IDENTITY(1,1) NOT NULL,
+	[IdKlienta] [int] NOT NULL,
+	[NrPokoju] [int] NULL,
+	[IloscOsob] [int] NOT NULL,
+	[DataOd] [date] NOT NULL,
+	[DataDo] [date] NOT NULL,
+	[CenaLaczna] [float] NULL,
+	[Status] [int] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[IdRezerwacji] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+
+
+
+
+--------------------------------------------
+-----procedura
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER procedure [dbo].[PokojeDostepnosc] 
+@Par_Od date,
+@Par_Do date,
+@Par_IloscLozek int,
+@Par_PokojStandard int
+as
+begin
+select  NrPokoju,  Cena
+from dbo.Pokoj
+where IdPokoju  not in
+				(
+				select dbo.Pokoj.IdPokoju
+				from dbo.Pokoj
+					inner join dbo.Grafik
+					on dbo.Pokoj.IdPokoju = dbo.Grafik.IdPokoju
+				WHERE (((@Par_Od <= DataOd) and (@Par_Do > DataOd)) 
+				or ((@Par_Od >= DataOd) and (@Par_Do <= DataDo))
+				or ((@Par_Od < DataDo) and (@Par_Do >= DataDo))
+				
+				 )
+				) and ((IloscLozek=@Par_IloscLozek) and (PokojStandard=@Par_PokojStandard))
+end;

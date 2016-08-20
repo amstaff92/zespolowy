@@ -1,0 +1,383 @@
+@charset "utf-8";
+/* PSIN - styl CSS dla strony przyk³adowej C4. */
+
+
+/* ---------------------------------------------- */
+/* Ogolny sytl dokumnetu */
+
+@font-face
+{
+
+font-family: boycott;
+src: url("fonts/alpha_echo.ttf") format("truetype");
+}
+
+
+ @font-face
+{
+	font-family: "moje";
+	src: url('fonts/Almendra-Regular.ttf')format("truetype");
+} 
+
+div#czcionka {
+font-family: "moje", sans-serif;
+	float: right;
+	margin-top: 30px;
+	margin-left: 20px;
+	text-shadow: 3px 3px black;
+	
+	}
+	
+	
+	
+	#menu{
+		
+		font-family: boycott ;
+		color: white;
+	}
+
+body{
+
+		/*font-family: boycott ,sans-serif;*/
+	font-size: 20px;
+	font-weight: normal;
+	font-style: normal;
+
+	margin: 0 auto;
+	background-image: url(tlo7.jpg);
+	
+	/* Wy³¹czenie domyœlnych marginesów. */
+	padding: 0px;
+	/* Wy³¹czenie domyœlnych dope³nieñ. */
+}
+
+
+h3{
+padding: 0px;
+margin: 0px;
+}
+header{
+
+height:70px; 
+min-width: 1090px;
+background: #ff8940; 
+padding:5px; 	
+		}
+		
+		
+		
+  .napis{
+
+	font-family: moje;
+	margin-top: 10px;
+	margin-left: 20px;
+	margin-bottom: 20px;
+	text-shadow: 2px 5px 3px #4e4e4e;
+	text-align:center;
+	color: #663300;
+	padding-bottom: 5px;
+	font-size: 40px;
+	
+
+}
+ .napis2{
+
+	font-family: sans-serf;
+	margin-top: 10px;
+	margin-left: 20px;
+	margin-bottom: 20px;
+	text-shadow: 1px 1px black;
+	text-align:center;
+	color: #ffa073;
+	padding-bottom: 5px;
+	font-size: 30px;
+
+}
+h1{
+text-shadow: 1px 0px 10px #98AAA2}
+
+h1:first-letter{
+font-size: xxxx-large;
+}
+nav{
+background-color:#a63f00;
+min-width: 1000px;
+height: 35px;
+border-bottom: none;
+max-width:1000px;
+margin:auto;
+}
+nav ul
+{
+display:inline-block;
+list-style: none; 
+margin: 0px;
+padding: 0px;
+text-decoration: none;
+padding-left:50px;
+min-width:995px;
+max-width:1150px;
+}
+nav ul a
+{
+text-decoration: none;
+display: block;
+color:#ffa073;
+
+}
+nav ul li
+{
+display: block; /* Wyœwietlanie blokowe elementów menu. */
+float: left; /* Ustawianie po prawej kolejnych pozycji menu. */
+width: 150px;
+height: 40px;
+text-align: center; /* Wyœrodkowanie tekstu menu. */
+color:#000000;
+padding: 10px;
+}
+nav ul li a:hover /* Style aktywnej zak³adki menu. */
+{
+font-weight: bold;
+color: white;
+
+}
+/*min-height: 700px;*/
+div#srodek{
+background-color:#ffffff;
+min-width: 900px;
+max-width: 950px;
+min-height: 700px;
+position: relative; /* Ustawienie obszaru jako kontenera. */
+margin: auto;
+
+}
+article{
+
+/*border: 1px outline #000000;*/
+min-width: 800px;
+background-color:#ffffff;
+margin: absolute; 
+top: 0px;
+bottom: 0px;
+min-height: 700px;
+border-radius: 20px;
+padding: 5px;
+text-align: justify;
+margin: 5px 230px 5px 5px;
+box-shadow:0px 5px 20px #182019;
+
+
+	
+
+}
+
+aside{
+background-color:#ffffff;
+position: absolute; /* Pozycjonowanie wzglêdem kontenera. */
+width: 195px;
+height: 900px;
+top: 0px; /* Dosuniêcie do górnej krawêdzi kontenera. */
+right: -120px; /* Dosuniêcie do lewej krawêdzi kontenera. */
+bottom: 0px; /* Dosuniêcie do dolnej krawêdzi kontenera. */
+margin: 0px; /* Otoczenie obszaru marginesem. */
+border-radius: 10px;
+padding: 10px;
+box-shadow:5px 5px 20px #182019;
+height:auto;
+
+}
+
+
+
+
+
+
+table
+{
+text-align: center;
+	font-size: 17px;
+	background-color: #800000;
+  border-radius: 5px;
+	box-shadow: 1px 1px 5px #A3BECE;
+	opacity: 0.8;
+	border-spacing: 2px; 
+	padding: 10px; /*margines wenterzny*/
+	width: 800px;
+}
+
+td
+{
+padding: 5px;
+}
+thead
+{
+font-weight:bold;
+color: #400000;
+background-color: #ff6400;
+height: 30px;
+}
+thead td.a
+{color:#400000;
+text-decoration: none;
+}
+tfoot
+{
+font-weight:bold;
+color: #400000;
+background-color: #8080ff;
+height: 25px;
+border-bottom: 1px solid #000000;
+}
+tfoot td{
+text-align: left;
+border-bottom: 2px solid #000000;
+padding-left: 10px;
+}
+tbody
+{
+background-color: #ff8b40;
+}
+tbody td{
+border-bottom: 1px solid #000000; 
+}
+tbody tr.nparz
+{background-color: #ffffff;
+}
+tbody td a:hover
+{ color: #ffffff;
+text-decoration: underline;}
+
+caption
+{
+text-align: center;
+font-weight: bold;
+font-size: 26px;
+padding-bottom: 15px;
+}
+
+#xhtmlcaption
+{
+text-align: left;
+font-weight: bold;
+font-size: 26px;
+padding-bottom: 15px;
+}
+
+figcaption
+{
+font-size: 28px;
+padding-top: 0px;
+color:#bf6830;
+margin: 0px;
+
+
+}
+
+legend{
+	font-size: 22px;
+}
+
+
+#formularz {
+margin-top: 20px;
+background-color: #673312;
+font-size: 16px;
+width: 450px;
+border-radius: 30px 10px 150px 10px;
+box-shadow:  5px 3px 20px   #182019;
+margin-bottom: 20px;
+border: 10px inline #673312;
+}
+
+
+#frmPodsumowanie {
+margin-top: 0px;
+background-color: #673312;
+font-size: 15px;
+width: 450px;
+border-radius: 30px 10px 150px 10px;
+box-shadow:  5px 3px 20px   #182019;
+margin-bottom: 0px;
+border: 10px inline #673312;
+padding: 5px 35px 12px 35px;
+
+
+}
+
+
+
+
+fieldset {
+margin-top: 3px;
+margin-right: 12px;
+margin-left: 12px;
+width: 410px;
+/*border: 1px solid #000000;*/
+border : none;
+color:#bf6830;
+
+}
+label{
+ width: 130px;
+ float: left;
+ clear: left;
+ display: block;
+ min-width: 150px;
+ color:#bf6830;
+ margin: opx;
+ height: auto;
+ 
+ }
+ 
+ #anuluj{
+	width: 100px;
+	border-radius: 10px;
+ }
+ input[type=button]{
+ width: 210px; 
+	 border-radius: 10px;
+ }
+ 
+  input[type=text], input[type=tel], input[type=email], input[type=date], input[type=number], select, input[type=password]{
+ 
+	 width: 210px; 
+	 border-radius: 10px;
+	
+ 
+ }
+ .frmPodsum{
+ 
+ height: 12px;
+ }
+ 
+ input[type=checkbox]{
+ margin-left: 100px; 
+ }
+ input[type=text]:focus, input[type=tel]:focus, input[type=email]:focus, input[type=date]:focus, input[type=number]:focus, select:focus
+ {background-color:#e05600;
+ }
+ 
+ input[type=submit], input[type=reset]{border-radius: 10px;}
+ 
+footer
+{
+text-align: center;
+font-size: small; 
+color: white;
+text-decoration: none;
+height: 39px;
+padding: 5px;
+margin: auto;
+background: #ff8940;
+clear:both;
+min-width: 1090px;
+text-algin: center;
+}
+#stopka{
+
+			
+}
+
+
+.antyspam { display: none; }
+
